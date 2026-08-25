@@ -31,3 +31,6 @@ keymap("n", "<C-u>", "<C-u>zz", { desc = "Half page up, keep cursor centered" })
 keymap("x", "<leader>p", [["_dP]], { desc = "Paste over selection without losing register" })
 -- NOTE: <leader>d is reserved for "show line diagnostics" (see lua/plugins/lsp.lua) to match
 -- Josean's original bind — don't repurpose it here.
+
+-- Quit
+keymap("n", "<leader>qq", "<cmd>qa<CR>", { desc = "Quit Neovim" })

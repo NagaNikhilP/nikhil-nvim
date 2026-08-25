@@ -16,6 +16,7 @@ return {
       { "<leader>R", group = "REST client" },
       { "<leader>c", group = "Code" },
       { "<leader>l", group = "Lint / LazyGit" },
+      { "<leader>q", group = "Quit" },
     },
   },
 }

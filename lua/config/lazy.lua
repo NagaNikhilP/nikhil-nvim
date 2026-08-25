@@ -24,13 +24,12 @@ vim.opt.rtp:prepend(lazypath)
 require("config.options")
 require("config.keymaps")
 require("config.autocmds")
-require("config.colorscheme")
 
 require("lazy").setup({
   spec = {
     { import = "plugins" },
   },
-  install = { colorscheme = { "duskrose" } },
+  install = { colorscheme = { "rose-pine" } },
   checker = { enabled = true, notify = false }, -- background-check for plugin updates, no popup spam
   change_detection = { notify = false },
   performance = {

@@ -27,7 +27,7 @@ they jump ("**g**o") somewhere related to code intelligence.
 5. `jk` (in insert mode) — leaves insert mode, same as `Esc`, but you never leave home row.
 6. `<leader>sv` — split the window vertically; `Ctrl-h/l` to jump between the splits.
 7. Open a `.py` or `.lua` file, put the cursor on a function name, press `K` — hover docs.
-8. `<leader>tt` — toggle a transparent background for the `duskrose` colorscheme.
+8. `<leader>tt` — toggle a transparent background for rose-pine.
 9. `<leader>lg` — opens `lazygit` in a floating terminal, if you have `lazygit` installed.
 10. Press Space alone and just look at the popup for 10 seconds. That's the whole trick.
 
@@ -43,6 +43,7 @@ they jump ("**g**o") somewhere related to code intelligence.
 | `<leader>-` | Decrement number under cursor | |
 | `<` / `>` (visual mode) | Indent left/right, stay selected | **[NEW]** normally Vim kicks you out of visual mode after one indent — this lets you tap repeatedly |
 | `Ctrl-d` / `Ctrl-u` | Half-page down/up, cursor stays centered | **[NEW]** default Vim scrolls but doesn't recenter |
+| `<leader>qq` | Quit Neovim | **[NEW]** prompts to save if you have unsaved changes; same as typing `:qa` |
 
 ## Windows (splits)
 
@@ -210,19 +211,19 @@ Pops up automatically as you type in insert mode.
 | `Ctrl-e` | Dismiss the menu without accepting |
 | `Ctrl-b` / `Ctrl-f` | Scroll the documentation preview |
 
-## Theme (duskrose) — **[NEW, not in Josean's guide]**
+## Theme (rose-pine) — **[NEW, not in Josean's guide]**
 
-A custom colorscheme, hand-written for this config at `colors/duskrose.lua` — no external
-theme plugin. It blends rose-pine's calm, muted dark-plum base with dracula's punchier,
-more saturated accents: eight accent hues (red, orange, yellow, green, cyan, blue, purple,
-pink), each a deliberate mix of the two rather than a straight copy of either.
+[rose-pine/neovim](https://github.com/rose-pine/neovim), "main" variant — its default moody,
+low-contrast dark palette. Lualine's statusline is hand-themed to match it exactly (see
+`lua/plugins/ui.lua`), using rose-pine's real colors (iris/foam/gold/love/rose per mode)
+rather than a guessed auto-theme.
 
 | Key | Does |
 |---|---|
 | `<leader>tt` | Toggle a transparent background on/off |
 
-Want a different look entirely? Just ask — swapping in another colorscheme or tweaking
-`colors/duskrose.lua`'s palette table is a small change.
+Want a different variant (`moon` or `dawn`) or a different theme entirely? Just ask —
+it's one line in `lua/plugins/colorscheme.lua`.
 
 ## Markdown notes — **[NEW]**
 
@@ -260,7 +261,7 @@ without leaving Neovim — useful for API/web testing on hackpath.dev.
   scripting, Python tooling, and network-automation config files rather than web dev.
 - **Formatters**: `stylua`, `shfmt`, `ruff format`.
 - **Explorer**: neo-tree · **Finder**: Telescope · **Completion**: blink.cmp
-- **Theme**: `duskrose` — custom, hand-written, rose-pine × dracula blend (see above)
+- **Theme**: rose-pine ("main" variant), with a matching hand-built lualine theme
 - **Dashboard/indent/notifications/zoom**: snacks.nvim
 - **Splits + tmux navigation**: smart-splits.nvim
 - **HTTP client**: kulala.nvim
