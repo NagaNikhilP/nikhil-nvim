@@ -27,6 +27,9 @@ return {
         "diff",
       },
       auto_install = true, -- install a parser automatically when opening an unrecognized filetype
+      -- kulala.nvim ships and manages its own dedicated grammar for .http files
+      -- (see lua/plugins/rest.lua) — don't let auto_install fight it for the same filetype.
+      ignore_install = { "http" },
       highlight = { enable = true },
       indent = { enable = true },
       incremental_selection = {
