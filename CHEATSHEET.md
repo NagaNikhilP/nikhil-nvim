@@ -27,7 +27,7 @@ they jump ("**g**o") somewhere related to code intelligence.
 5. `jk` (in insert mode) — leaves insert mode, same as `Esc`, but you never leave home row.
 6. `<leader>sv` — split the window vertically; `Ctrl-h/l` to jump between the splits.
 7. Open a `.py` or `.lua` file, put the cursor on a function name, press `K` — hover docs.
-8. `<leader>th` — pick a colorscheme flavour (omni.nvim). Try a few, it's remembered on restart.
+8. `<leader>tt` — toggle a transparent background for the `duskrose` colorscheme.
 9. `<leader>lg` — opens `lazygit` in a floating terminal, if you have `lazygit` installed.
 10. Press Space alone and just look at the popup for 10 seconds. That's the whole trick.
 
@@ -210,12 +210,19 @@ Pops up automatically as you type in insert mode.
 | `Ctrl-e` | Dismiss the menu without accepting |
 | `Ctrl-b` / `Ctrl-f` | Scroll the documentation preview |
 
-## Theme (omni.nvim) — **[NEW, not in Josean's guide]**
+## Theme (duskrose) — **[NEW, not in Josean's guide]**
+
+A custom colorscheme, hand-written for this config at `colors/duskrose.lua` — no external
+theme plugin. It blends rose-pine's calm, muted dark-plum base with dracula's punchier,
+more saturated accents: eight accent hues (red, orange, yellow, green, cyan, blue, purple,
+pink), each a deliberate mix of the two rather than a straight copy of either.
 
 | Key | Does |
 |---|---|
-| `<leader>th` | Open a picker of omni.nvim's 7 flavours (blackout, moss, dusk, frost, blossom, ember, velvet) and switch — your choice is remembered across restarts |
 | `<leader>tt` | Toggle a transparent background on/off |
+
+Want a different look entirely? Just ask — swapping in another colorscheme or tweaking
+`colors/duskrose.lua`'s palette table is a small change.
 
 ## Markdown notes — **[NEW]**
 
@@ -253,7 +260,7 @@ without leaving Neovim — useful for API/web testing on hackpath.dev.
   scripting, Python tooling, and network-automation config files rather than web dev.
 - **Formatters**: `stylua`, `shfmt`, `ruff format`.
 - **Explorer**: neo-tree · **Finder**: Telescope · **Completion**: blink.cmp
-- **Theme**: omni.nvim (7 flavours, see above)
+- **Theme**: `duskrose` — custom, hand-written, rose-pine × dracula blend (see above)
 - **Dashboard/indent/notifications/zoom**: snacks.nvim
 - **Splits + tmux navigation**: smart-splits.nvim
 - **HTTP client**: kulala.nvim
