@@ -29,7 +29,6 @@ require("lazy").setup({
   spec = {
     { import = "plugins" },
   },
-  install = { colorscheme = { "rose-pine" } },
   checker = { enabled = true, notify = false }, -- background-check for plugin updates, no popup spam
   change_detection = { notify = false },
   performance = {

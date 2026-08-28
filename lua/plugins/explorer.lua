@@ -32,6 +32,14 @@ return {
         hide_gitignored = false,
       },
     },
-    window = { width = 32 },
+    window = {
+      width = 32,
+      mappings = {
+        -- neo-tree binds bare <space> to toggle_node by default, which eats your
+        -- <leader> key the instant the explorer window is focused. Freeing it lets
+        -- which-key/<leader> binds work normally in here too; use <cr> or o to expand.
+        ["<space>"] = "none",
+      },
+    },
   },
 }

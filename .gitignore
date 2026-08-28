@@ -1,2 +1,10 @@
 # Local-only, machine-generated
 .luarc.json.local
+
+# Rendered by Noctalia's own "neovim" community template on machines that have it —
+# a per-machine snapshot of live desktop colors, not something to commit. Without it,
+# lua/plugins/base16.lua falls back to a static gruvbox dark theme automatically.
+lua/matugen.lua
+
+# Stray file, unrelated to this config (a spicetify install log that landed here once)
+install.log

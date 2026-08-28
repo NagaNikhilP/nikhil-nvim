@@ -27,7 +27,7 @@ they jump ("**g**o") somewhere related to code intelligence.
 5. `jk` (in insert mode) — leaves insert mode, same as `Esc`, but you never leave home row.
 6. `<leader>sv` — split the window vertically; `Ctrl-h/l` to jump between the splits.
 7. Open a `.py` or `.lua` file, put the cursor on a function name, press `K` — hover docs.
-8. `<leader>tt` — toggle a transparent background for rose-pine.
+8. `<leader>tt` — toggle a transparent background.
 9. `<leader>lg` — opens `lazygit` in a floating terminal, if you have `lazygit` installed.
 10. Press Space alone and just look at the popup for 10 seconds. That's the whole trick.
 
@@ -211,19 +211,25 @@ Pops up automatically as you type in insert mode.
 | `Ctrl-e` | Dismiss the menu without accepting |
 | `Ctrl-b` / `Ctrl-f` | Scroll the documentation preview |
 
-## Theme (rose-pine) — **[NEW, not in Josean's guide]**
+## Theme (dynamic, synced to Noctalia) — **[NEW, not in Josean's guide]**
 
-[rose-pine/neovim](https://github.com/rose-pine/neovim), "main" variant — its default moody,
-low-contrast dark palette. Lualine's statusline is hand-themed to match it exactly (see
-`lua/plugins/ui.lua`), using rose-pine's real colors (iris/foam/gold/love/rose per mode)
-rather than a guessed auto-theme.
+Colors follow your Noctalia desktop theme automatically — same live-sync mechanism as your
+bar, kitty, btop, yazi, etc. Noctalia's own "neovim" community template renders your active
+theme's colors into `lua/matugen.lua` (via `matugen`) and applies them through
+`RRethy/base16-nvim` (`lua/plugins/base16.lua`). When you switch themes in Noctalia, it sends
+`SIGUSR1` to any running `nvim`, which hot-reloads the new colors live — no restart needed.
+Lualine's statusline theme is set to `"auto"` (`lua/plugins/ui.lua`) so it always derives its
+colors from whatever's currently applied, instead of a hardcoded palette that would go stale
+the moment you switch themes.
 
 | Key | Does |
 |---|---|
 | `<leader>tt` | Toggle a transparent background on/off |
 
-Want a different variant (`moon` or `dawn`) or a different theme entirely? Just ask —
-it's one line in `lua/plugins/colorscheme.lua`.
+This replaced a static rose-pine setup once dynamic Noctalia-wide theming was wired up.
+`lua/matugen.lua` and `lua/plugins/base16.lua` are Noctalia's own generated files — editing
+them by hand is fine (apply.sh won't overwrite an existing `base16.lua`), but the colors
+inside `matugen.lua` get overwritten every time Noctalia re-renders the template.
 
 ## Markdown notes — **[NEW]**
 
@@ -261,7 +267,7 @@ without leaving Neovim — useful for API/web testing on hackpath.dev.
   scripting, Python tooling, and network-automation config files rather than web dev.
 - **Formatters**: `stylua`, `shfmt`, `ruff format`.
 - **Explorer**: neo-tree · **Finder**: Telescope · **Completion**: blink.cmp
-- **Theme**: rose-pine ("main" variant), with a matching hand-built lualine theme
+- **Theme**: dynamic, synced live from Noctalia (matugen + base16-nvim), lualine set to `"auto"` to follow it
 - **Dashboard/indent/notifications/zoom**: snacks.nvim
 - **Splits + tmux navigation**: smart-splits.nvim
 - **HTTP client**: kulala.nvim

@@ -69,7 +69,23 @@ return {
         "dockerls", -- lab containers
         "taplo", -- TOML configs
       },
-      automatic_enable = true,
+      -- automatic_enable = true would enable ANY mason-installed tool that happens to
+      -- match a known lspconfig server name — not just the servers above. stylua ships
+      -- a real LSP mode that nvim-lspconfig knows about, so with `true` it silently
+      -- attaches itself to every Lua buffer even though it's only installed here as a
+      -- formatter (see lua/plugins/formatting.lua). Scoping this to the exact list above
+      -- is the fix mason-lspconfig's own docs recommend for this.
+      automatic_enable = {
+        "lua_ls",
+        "bashls",
+        "basedpyright",
+        "ruff",
+        "yamlls",
+        "jsonls",
+        "marksman",
+        "dockerls",
+        "taplo",
+      },
     },
   },
   {
