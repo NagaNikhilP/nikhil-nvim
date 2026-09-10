@@ -72,8 +72,11 @@ automatically — just wait for it to settle, then restart `nvim` once.
 - **Formatting/linting**: conform.nvim (`stylua`, `shfmt`, `ruff format`) + nvim-lint
 - **Dashboard/indent/notifications/zoom**: snacks.nvim
 - **Splits + tmux-aware navigation**: smart-splits.nvim
-- **Sessions**: auto-session — restore is opt-in (`<leader>wr`), bare `nvim` always opens the
+- **Sessions**: auto-session — restore is opt-in (`<leader>Sr`), bare `nvim` always opens the
   dashboard, `nvim <dir>` opens that directory in neo-tree
+- **Python**: run the current file (`<leader>rr`) or debug it with real breakpoints
+  (nvim-dap + nvim-dap-ui + debugpy, VS Code's F5/F10/F11/F12 keys). Virtualenvs are
+  detected automatically and shared by the runner, the debugger and basedpyright
 - **HTTP client**: kulala.nvim — API/web testing without leaving the editor
 - **Markdown**: render-markdown.nvim, for readable study notes
 

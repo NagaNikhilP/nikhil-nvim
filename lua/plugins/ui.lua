@@ -30,9 +30,7 @@ return {
               icon = " ",
               key = "c",
               desc = "Edit Config",
-              action = function()
-                require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
-              end,
+              action = function() require("telescope.builtin").find_files { cwd = vim.fn.stdpath "config" } end,
             },
             { icon = "󰒲 ", key = "L", desc = "Plugins (Lazy)", action = ":Lazy" },
             { icon = " ", key = "q", desc = "Quit", action = ":qa" },
@@ -84,6 +82,12 @@ return {
     opts = {
       options = {
         mode = "buffers",
+        --hide the blank "[No Name ]" tab neo-tree leaves behind after nvim .
+        custom_filter = function(buf)
+          if vim.api.nvim_buf_get_name(buf) ~= "" then return true end
+          local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+          return not (#lines == 1 and lines[1] == "")
+        end,
         diagnostics = "nvim_lsp",
         offsets = { { filetype = "neo-tree", text = "Explorer", highlight = "Directory", text_align = "left" } },
         -- No vertical-bar separators between tabs — matches the flat, no-capsule look

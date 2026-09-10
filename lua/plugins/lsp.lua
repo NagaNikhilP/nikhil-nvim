@@ -4,7 +4,7 @@
 -- `require('lspconfig').xxx.setup{}` calls anywhere in this config.
 
 -- Keymaps + diagnostics: registered once, apply to any buffer an LSP attaches to.
-vim.diagnostic.config({
+vim.diagnostic.config {
   virtual_text = { prefix = "●" },
   severity_sort = true,
   float = { border = "rounded" },
@@ -16,14 +16,12 @@ vim.diagnostic.config({
       [vim.diagnostic.severity.HINT] = "",
     },
   },
-})
+}
 
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("lsp-attach-keymaps", { clear = true }),
   callback = function(event)
-    local map = function(mode, lhs, rhs, desc)
-      vim.keymap.set(mode, lhs, rhs, { buffer = event.buf, desc = desc })
-    end
+    local map = function(mode, lhs, rhs, desc) vim.keymap.set(mode, lhs, rhs, { buffer = event.buf, desc = desc }) end
 
     map("n", "gR", "<cmd>Telescope lsp_references<CR>", "LSP: show references")
     map("n", "gD", vim.lsp.buf.declaration, "LSP: go to declaration")
@@ -34,8 +32,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "<leader>rn", vim.lsp.buf.rename, "LSP: rename symbol")
     map("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", "LSP: buffer diagnostics")
     map("n", "<leader>d", vim.diagnostic.open_float, "LSP: line diagnostics")
-    map("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, "LSP: previous diagnostic")
-    map("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, "LSP: next diagnostic")
+    map("n", "[d", function() vim.diagnostic.jump { count = -1, float = true } end, "LSP: previous diagnostic")
+    map("n", "]d", function() vim.diagnostic.jump { count = 1, float = true } end, "LSP: next diagnostic")
     map("n", "K", vim.lsp.buf.hover, "LSP: hover documentation")
     map("n", "<leader>rs", "<cmd>LspRestart<CR>", "LSP: restart server")
   end,
@@ -97,6 +95,8 @@ return {
         "stylua", -- lua formatter
         "shfmt", -- shell formatter
         "shellcheck", -- shell linter
+        "debugpy", -- Python debug adapter, used by lua/plugins/dap.lua
+        "nixfmt", -- nix formatter for nixos-config
       },
     },
   },

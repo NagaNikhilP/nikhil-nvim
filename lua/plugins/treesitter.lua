@@ -9,7 +9,7 @@ return {
     "nvim-treesitter/nvim-treesitter-textobjects",
   },
   config = function()
-    require("nvim-treesitter.configs").setup({
+    require("nvim-treesitter.configs").setup {
       ensure_installed = {
         "lua",
         "vim",
@@ -41,6 +41,11 @@ return {
           node_decremental = "<BS>",
         },
       },
-    })
+    }
+
+    -- nvim-treesitter `master` is locked to Nvim 0.11; this box runs 0.12.5. Repair the
+    -- three query directives that break under it. Must run after the setup() above,
+    -- which is what pulls in nvim-treesitter's own (broken) registrations.
+    require("util.ts_compat").apply()
   end,
 }

@@ -32,5 +32,16 @@ keymap("x", "<leader>p", [["_dP]], { desc = "Paste over selection without losing
 -- NOTE: <leader>d is reserved for "show line diagnostics" (see lua/plugins/lsp.lua) to match
 -- Josean's original bind — don't repurpose it here.
 
+-- Save. <leader>w is a bare write with nothing under it, so it fires instantly — the
+-- session maps that used to live at <leader>w moved to <leader>S (see lua/plugins/session.lua)
+-- precisely so this key has no `timeoutlen` wait. <C-s> is here too for VS Code muscle
+-- memory; nvim puts the terminal in raw mode, so it does NOT trigger XOFF flow control.
+-- Nothing else may be mapped under <leader>w, or this key gains a 300ms `timeoutlen`
+-- pause while nvim waits to see if another letter is coming. "Save all" is <C-s> in
+-- visual/normal + :wa if you ever need it.
+keymap("n", "<leader>w", "<cmd>write<CR>", { desc = "Save file" })
+keymap({ "n", "v" }, "<C-s>", "<cmd>write<CR>", { desc = "Save file" })
+keymap("i", "<C-s>", "<Esc><cmd>write<CR>", { desc = "Save file and leave insert mode" })
+
 -- Quit
 keymap("n", "<leader>qq", "<cmd>qa<CR>", { desc = "Quit Neovim" })

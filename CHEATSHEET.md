@@ -43,6 +43,8 @@ they jump ("**g**o") somewhere related to code intelligence.
 | `<leader>-` | Decrement number under cursor | |
 | `<` / `>` (visual mode) | Indent left/right, stay selected | **[NEW]** normally Vim kicks you out of visual mode after one indent — this lets you tap repeatedly |
 | `Ctrl-d` / `Ctrl-u` | Half-page down/up, cursor stays centered | **[NEW]** default Vim scrolls but doesn't recenter |
+| `<leader>w` | **Save the file** | **[NEW]** nothing else is mapped under `<leader>w`, so it fires instantly |
+| `Ctrl-s` | Save the file | **[NEW]** works in normal, visual *and* insert mode (insert mode also drops you back to normal) |
 | `<leader>qq` | Quit Neovim | **[NEW]** prompts to save if you have unsaved changes; same as typing `:qa` |
 
 ## Windows (splits)
@@ -107,8 +109,12 @@ Remembers which files/splits you had open in a given folder, so you can pick up 
 
 | Key | Does |
 |---|---|
-| `<leader>ws` | **W**rite/**s**ave a session for the current folder |
-| `<leader>wr` | **W**rite/**r**estore — reopen the saved session for the current folder |
+| `<leader>Ss` | **S**ession **s**ave for the current folder |
+| `<leader>Sr` | **S**ession **r**estore — reopen the saved session for the current folder |
+
+> These used to be `<leader>ws` / `<leader>wr`. They moved to capital `S` so that `<leader>w`
+> could become a plain, instant "save file" — with anything mapped underneath it, `<leader>w`
+> would pause for 300ms (`timeoutlen`) waiting to see if another key was coming.
 
 ## LSP (code intelligence — go to definition, hover docs, errors, rename)
 
@@ -131,6 +137,59 @@ attached (check with `:LspInfo`).
 | `<leader>D` | Show all **D**iagnostics for the whole buffer |
 | `[d` / `]d` | Jump to previous/next diagnostic |
 | `<leader>rs` | **R**e**s**tart the LSP server (fixes it if it gets stuck) |
+
+## Python: running and debugging — **[NEW]**
+
+### Which Python gets used
+
+You never have to "activate" a virtualenv. If your project folder has a `.venv` (or `venv`,
+or `env`), everything below uses it automatically — the runner, the debugger, *and*
+basedpyright, so imports stop showing false red squiggles. If you launched nvim from a shell
+where a venv was already active, that one wins instead.
+
+`<leader>rv` tells you which one it picked.
+
+### Running
+
+| Key | Does |
+|---|---|
+| `<leader>rr` | **R**un this Python file in a floating terminal. Saves first, so it runs what's on screen. The window stays open after the script ends — press `q` to close it |
+| `<leader>ri` | Run the file, then drop into a REPL **with all its variables still alive**. The best way to poke at what your code just did |
+| `<leader>rp` | Toggle a plain Python REPL |
+| `<leader>rt` | Toggle a shell in the project folder, with the venv already on `PATH` — for `pip install`, `pytest`, `git` |
+| `<leader>rv` | Which Python am I using? |
+
+### Debugging (instead of scattering `print()` everywhere)
+
+Set a breakpoint on a line, run the file, and nvim freezes there and shows you every
+variable's value. Then you walk through the code one line at a time.
+
+The F-keys are deliberately the same ones VS Code uses, so tutorials transfer.
+
+| Key | Does |
+|---|---|
+| `<leader>b` | Put/remove a **b**reakpoint on this line (a red ● appears in the left margin) |
+| `<leader>B` | Breakpoint that only triggers when a condition is true, e.g. `i > 100` |
+| `<leader>rd` | Start **d**ebugging this file |
+| `F5` | Continue — run until the next breakpoint |
+| `F10` | Step **over** — run this line, don't go inside the function it calls |
+| `F11` | Step **into** — go inside the function being called |
+| `F12` | Step **out** — finish this function, come back to the caller |
+| `<leader>rk` | Show the value of whatever is under the cursor (also works on a visual selection) |
+| `<leader>ru` | Show/hide the variables panel |
+| `<leader>rx` | Stop debugging |
+
+The variables panel opens by itself when a session starts and closes when it ends, so it's
+never in the way while you're just editing. Variable values also appear inline, greyed out
+next to the code.
+
+**A first run, start to finish:**
+
+1. Open a `.py` file.
+2. Put the cursor on a line inside a function and press `<leader>b`. A red ● appears.
+3. Press `<leader>rd`, then pick `file` from the little menu that appears.
+4. nvim stops at your line. The panel on the left lists every variable and its value.
+5. `F10` walks forward a line at a time. `<leader>rx` stops.
 
 ## Trouble (a nicer list of problems)
 

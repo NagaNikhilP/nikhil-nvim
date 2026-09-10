@@ -4,9 +4,7 @@ return {
   keys = {
     {
       "<leader>l",
-      function()
-        require("lint").try_lint()
-      end,
+      function() require("lint").try_lint() end,
       desc = "Trigger linting for current file",
     },
   },

@@ -44,7 +44,13 @@ opt.splitbelow = true
 opt.swapfile = false
 opt.backup = false
 opt.undofile = true
-opt.undodir = vim.fn.stdpath("state") .. "/undo"
+opt.undodir = vim.fn.stdpath "state" .. "/undo"
+
+-- Sessions: nvim's default leaves out localoptions, so filetype and syntax
+-- highlighting come back wrong after auto-session restores a session. This is
+-- the exact list auto-session's own healthcheck asks for (default plus winpos
+-- and localoptions).
+opt.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 -- Performance / UX
 opt.updatetime = 250 -- faster CursorHold events (diagnostics, gitsigns)
